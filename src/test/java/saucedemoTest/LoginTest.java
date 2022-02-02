@@ -5,22 +5,38 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import web.Page.LoginPage;
 
-public class LoginTest extends BaseTest{
-    public void openLoginPage(){
-        loginPage.open();
-        Assert.assertTrue(loginPage.isPageLoaded(), "Login page is not loaded");
+public class LoginTest extends BaseTest {
+    public void openLoginPage() {
+        Assert.assertTrue(
+                loginPage.open()
+                        .isPageLoaded()
+                        , "Login page is not loaded"
+        );
 
     }
 
     @BeforeMethod
     public void validCredentialsLoginTest() {
-        openLoginPage();
-        loginPage.login(USERNAME, PASSWORD);
-        Assert.assertTrue(catalogPage.isPageLoaded(), "Catalog page is not loaded");
+        Assert.assertTrue(
+                loginPage
+                        .open()
+                        .isPageLoaded()
+                , "Catalog page is not loaded"
+
+
+        );
+        Assert.assertTrue(
+                loginPage
+                        .login(USERNAME, PASSWORD)
+                        .isPageLoaded()
+                , "Catalog page is not loaded"
+
+
+        );
     }
 
     @Test
-    public void usernamePlaceholderTest(){
+    public void usernamePlaceholderTest() {
         openLoginPage();
         Assert.assertEquals(loginPage.getUserNamePlaceholder(),
                 LoginPage.USERNAME_TEXT_FIELD_PLACEHOLDER,

@@ -18,7 +18,6 @@ public class BaseTest {
     protected CheckoutOverviewPage checkoutOverviewPage;
     protected CheckoutCompletePage checkoutCompletePage;
 
-
     public static final String USERNAME = "standard_user";
     public static final String PASSWORD = "secret_sauce";
     public static final String LOCKED_USER = "locked user name";
@@ -31,6 +30,7 @@ public class BaseTest {
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--ignore-popup-blocking");
         chromeOptions.addArguments("--ignore-certificate-errors");
         driver = new ChromeDriver(chromeOptions);

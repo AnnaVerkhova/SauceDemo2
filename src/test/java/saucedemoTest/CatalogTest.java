@@ -11,10 +11,18 @@ public class CatalogTest extends LoginTest {
 
     @BeforeMethod
     private void login() {
-        loginPage.open();
-        Assert.assertTrue(loginPage.isPageLoaded(), "Login page is not loaded");
-        loginPage.login(USERNAME, PASSWORD);
-        Assert.assertTrue(catalogPage.isPageLoaded(), "Catalog page is not loaded");
+        Assert.assertTrue(
+                loginPage
+                        .open()
+                        .isPageLoaded()
+                , "Login page is not loaded"
+
+        );
+        loginPage
+                .login(USERNAME, PASSWORD);
+        Assert.assertTrue(
+                catalogPage.isPageLoaded()
+                , "Catalog page is not loaded");
     }
 
     @Test
@@ -45,6 +53,18 @@ public class CatalogTest extends LoginTest {
         Assert.assertEquals(catalogPage.getProductList(), expected, "Open sort high to low is incorrect");
     }
 
+    @Test
+    public void menuIsOpenedTest() {
+        loginPage
+                .open();
+        Assert.assertTrue(
+                catalogPage
+                        .open()
+                        .isPageLoaded()
+                , "Catalog page is not loaded"
+        );
+        Assert.assertTrue(catalogPage.burgerMenu.open(), "Menu is not opened");
+    }
 
 
 
