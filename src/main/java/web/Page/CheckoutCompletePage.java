@@ -38,7 +38,4 @@ public class CheckoutCompletePage extends  BasePage{
         driver.get(BASE_URL);
         return this;
     }
-
-
-
 }

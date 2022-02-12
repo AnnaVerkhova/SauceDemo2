@@ -3,6 +3,7 @@ package saucedemoTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.Retry;
 import web.Page.CatalogPage;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class CatalogTest extends LoginTest {
                 , "Catalog page is not loaded");
     }
 
-    @Test
+    @Test (retryAnalyzer = Retry.class)
     public void sortingAtoZTest() {
         ArrayList<String> expected = catalogPage.sortProductAtoZ();
         catalogPage.setSortProduct(CatalogPage.SORT_AZ);
@@ -65,7 +66,4 @@ public class CatalogTest extends LoginTest {
         );
         Assert.assertTrue(catalogPage.burgerMenu.open(), "Menu is not opened");
     }
-
-
-
 }

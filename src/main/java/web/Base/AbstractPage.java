@@ -19,6 +19,5 @@ public abstract class AbstractPage extends AbstractElement{
         }
         return true;
     }
-
 }
 

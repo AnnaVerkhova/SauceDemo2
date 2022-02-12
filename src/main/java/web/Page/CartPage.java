@@ -29,7 +29,6 @@ public class CartPage extends BasePage {
         this.baseElementLocator = TITLE_LOCATOR;
     }
 
-
     public boolean validateAddedProducts(List<String> partialTitles) {
         List<WebElement> products = driver.findElements(PRODUCT_IN_CAR);
 

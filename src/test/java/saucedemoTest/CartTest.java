@@ -19,3 +19,4 @@ public class CartTest extends LoginTest {
         Assert.assertTrue(cartPage.burgerMenu.open(), "Menu is not opened");
     }
 }
+

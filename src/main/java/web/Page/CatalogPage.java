@@ -16,7 +16,6 @@ import java.util.List;
 public class CatalogPage extends BasePage {
     public static final String BASE_URL = "https://www.saucedemo.com/inventory.html";
     private static final By TITLE_LOCATOR = By.xpath("//span[@class='title' and text()='Products']");
-    private static final By LOGOUT = By.id("logout_sidebar_link");
     private static final By PRODUCTS_NAME_LOCATOR = By.cssSelector(".inventory_item_name");
     private static final By SORT_PRODUCYS = By.cssSelector(".product_sort_container");
     public static String SORT_AZ = "A to Z";
@@ -50,9 +49,10 @@ public class CatalogPage extends BasePage {
         driver.findElement(SORT_PRODUCYS).click();
     }
 
-    public void setSortProduct(String partialSortProduct){
+    public CatalogPage setSortProduct(String partialSortProduct){
         openSortProduct();
         driver.findElement(By.xpath(String.format(SORT_PATTERN_NAME,partialSortProduct))).click();
+        return this;
     }
 
     public ArrayList<String> getProductList(){
@@ -70,7 +70,7 @@ public class CatalogPage extends BasePage {
         for (String sort: getProductList()){
             sortList.add(sort);
         }
-        Collections.reverse(sortList);
+        Collections.sort(sortList);
         return sortList;
     }
 

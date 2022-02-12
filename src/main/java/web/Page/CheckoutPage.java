@@ -54,3 +54,4 @@ public class CheckoutPage extends BasePage{
     }
 
 }
+

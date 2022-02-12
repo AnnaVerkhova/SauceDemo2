@@ -12,5 +12,4 @@ public class CartElement extends AbstractElement {
         super(driver);
         super.baseElementLocator= CART_ELEMENT ;
     }
-
 }

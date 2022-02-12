@@ -14,6 +14,7 @@ public class BurgerMenuElement extends AbstractElement {
 
     private static final By BURGER_MENU_BUTTON = By.id("react-burger-menu-btn");
     private static final By CLOSE_MENU_BUTTON = By.id("react-burger-cross-btn");
+    private static final By LOGOUT = By.id("logout_sidebar_link");
 
     public BurgerMenuElement(WebDriver driver) {
         super(driver);

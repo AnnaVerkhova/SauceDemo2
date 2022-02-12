@@ -37,5 +37,4 @@ public class CheckoutOverviewPage extends  BasePage{
         driver.get(BASE_URL);
         return this;
     }
-
 }

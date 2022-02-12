@@ -9,3 +9,4 @@ public abstract class BaseModalPage  extends AbstractPage{
         super(driver);
     }
 }
+

@@ -7,7 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
     public static final String BASE_URL = "https://www.saucedemo.com/";
-    public static final String ERROR_MESSAGE_LOCKED = "Epic sadface: Username and password do not match any user in this service";
+    public static final String ERROR_MESSAGE_MISMATCH =
+            "Epic sadface: Username and password do not match any user in this service";
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -15,12 +16,12 @@ public class LoginPage extends BasePage {
         this.baseElementLocator = LOGIN_BUTTON;
     }
 
-
     private static final By USERNAME_TEXT_FIELD = By.id("user-name");
     private static final By PASSWORD_TEXT_FIELD = By.id("password");
     private static final By LOGIN_BUTTON = By.id("login-button");
-    public static final By ERROR_MESSAGE = By.tagName("h3");
+    public static final By ERROR_MESSAGE = By.xpath("//div[@class='error-message-container error']//h3");
     public static final String USERNAME_TEXT_FIELD_PLACEHOLDER = "Username";
+
 
     public CatalogPage login(String username, String password) {
         driver.findElement(USERNAME_TEXT_FIELD).sendKeys(username);
@@ -38,11 +39,13 @@ public class LoginPage extends BasePage {
         return driver.findElement(USERNAME_TEXT_FIELD).getAttribute("placeholder");
 
     }
-    public LoginPage openWithValidation(){
+
+    public LoginPage openWithValidation() {
         open();
         isPageLoaded();
         return this;
     }
+
     @Override
     public BasePage isPageOpened() {
         try {
@@ -50,7 +53,7 @@ public class LoginPage extends BasePage {
         } catch (TimeoutException timeoutException) {
             return null;
         }
-        return this ;
+        return this;
     }
 
     @Override

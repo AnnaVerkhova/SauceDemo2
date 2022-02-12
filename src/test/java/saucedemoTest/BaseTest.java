@@ -18,19 +18,27 @@ public class BaseTest {
     protected CheckoutOverviewPage checkoutOverviewPage;
     protected CheckoutCompletePage checkoutCompletePage;
 
-    public static final String USERNAME = "standard_user";
-    public static final String PASSWORD = "secret_sauce";
+    //public static final String USERNAME = "standard_user";
+   // public static final String PASSWORD = "secret_sauce";
     public static final String LOCKED_USER = "locked user name";
     public static final String FIRST_NAME_VALUE = "firstname";
     public static final String LAST_NAME_VALUE = "lastname";
     public static final String ZIP_VALUE = "postcode";
+    public static String USERNAME;
+    public static String PASSWORD;
+
+    public void initParams() {
+        USERNAME = System.getProperty("username");
+        PASSWORD = System.getProperty("password");
+    }
 
 
     @BeforeMethod
     public void setup() {
+        initParams();
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
+        // chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--ignore-popup-blocking");
         chromeOptions.addArguments("--ignore-certificate-errors");
         driver = new ChromeDriver(chromeOptions);
