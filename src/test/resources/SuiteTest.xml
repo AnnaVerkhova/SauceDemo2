@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<suite name="Tests Suite" thread-count="3" parallel="tests" >-->
+<suite name="Suite Test">
+    <test name="Login test">
+        <classes>
+            <class name="saucedemoTest.LoginTest"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Catalog test">
+        <classes>
+            <class name="saucedemoTest.CatalogTest"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Product Test">
+        <classes>
+            <class name="saucedemoTest.ProductTest"/>
+        </classes>
+    </test> <!-- Test -->
+        <test name="Maven properties test">
+        <classes>
+            <class name="mavenTest.ExternalPropertyTest">
+                <methods>
+                    <include name="browserPropertyTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+
