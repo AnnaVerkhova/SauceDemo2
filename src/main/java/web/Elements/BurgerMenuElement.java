@@ -33,7 +33,6 @@ public class BurgerMenuElement extends AbstractElement {
         });
         return driver.findElement(CLOSE_MENU_BUTTON).isDisplayed();
     }
-
 }
 
 

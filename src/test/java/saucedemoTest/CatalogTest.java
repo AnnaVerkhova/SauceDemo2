@@ -33,21 +33,21 @@ public class CatalogTest extends LoginTest {
         Assert.assertEquals(catalogPage.getProductList(), expected, "Open sort A to Z is incorrect");
     }
 
-    @Test
+    @Test(description = "Тестирование сортировки от Z до A")
     public void sortingZtoATest() {
         ArrayList<String> expected = catalogPage.sortProductZtoA();
         catalogPage.setSortProduct(CatalogPage.SORT_ZA);
         Assert.assertEquals(catalogPage.getProductList(), expected, "Open sort Z to A is incorrect");
     }
 
-    @Test
+    @Test(description = "Тестирование сортировки по возрастанию ")
     public void sortingLHTest() {
         ArrayList<String> expected = catalogPage.sortProductLowToHigh();
         catalogPage.setSortProduct(CatalogPage.SORT_PRICE_LOW_TO_HIGH);
         Assert.assertEquals(catalogPage.getProductList(), expected, "Open sort low to high is incorrect");
     }
 
-    @Test
+    @Test(description = "Тестирование сортировки по убыванию")
     public void sortingHLTest() {
         ArrayList<String> expected = catalogPage.sortProductHighToLow();
         catalogPage.setSortProduct(CatalogPage.SORT_PRICE_HIGH_TO_LOW);

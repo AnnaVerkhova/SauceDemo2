@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-public abstract class AbstractPage extends AbstractElement{
+public abstract class AbstractPage extends AbstractElement {
 
     public AbstractPage(WebDriver driver) {
         super(driver);
@@ -20,4 +20,3 @@ public abstract class AbstractPage extends AbstractElement{
         return true;
     }
 }
-

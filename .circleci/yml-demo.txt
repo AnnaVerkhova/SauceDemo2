@@ -1,0 +1,21 @@
+json
+{
+     "user1":{
+         "name"= "Anna",
+         "age" = "30",
+         "isHired"= true,
+     }
+}
+
+<xml>
+<user1>
+    <name>Anna</name>
+    <age>30</age>
+    <isHired>true</isHired>
+</user1>
+</xml>
+
+user1:
+  name: Anna
+  age: 30
+  isHired: true

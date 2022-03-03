@@ -6,9 +6,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+import utils.TestListener;
 import web.Page.*;
 import java.time.Duration;
 
+@Listeners({TestListener.class})
 public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
@@ -20,7 +23,7 @@ public class BaseTest {
 
     //public static final String USERNAME = "standard_user";
    // public static final String PASSWORD = "secret_sauce";
-    public static final String LOCKED_USER = "locked user name";
+    public static final String LOCKED_OUT_USER = "locked user name";
     public static final String FIRST_NAME_VALUE = "firstname";
     public static final String LAST_NAME_VALUE = "lastname";
     public static final String ZIP_VALUE = "postcode";
@@ -32,13 +35,12 @@ public class BaseTest {
         PASSWORD = System.getProperty("password");
     }
 
-
     @BeforeMethod
     public void setup() {
         initParams();
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/win/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
-        // chromeOptions.addArguments("--headless");
+        //chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--ignore-popup-blocking");
         chromeOptions.addArguments("--ignore-certificate-errors");
         driver = new ChromeDriver(chromeOptions);

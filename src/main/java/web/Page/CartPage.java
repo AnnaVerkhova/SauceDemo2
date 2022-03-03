@@ -67,6 +67,7 @@ public class CartPage extends BasePage {
         }
         return this ;
     }
+
     @Override
     public CartPage openPage() {
         driver.get(BASE_URL);

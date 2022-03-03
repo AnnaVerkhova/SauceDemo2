@@ -42,6 +42,12 @@ Results :
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.735 s - in saucedemoTest.CatalogTest
 
 
+Allure is used for the project:  
+mvn allure:serve  
+mvn allure:report
+
+
+
 Testing Saucedemo is an online store.
 
 ###Checklist

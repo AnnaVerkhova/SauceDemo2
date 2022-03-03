@@ -7,8 +7,9 @@ import web.Page.CheckoutPage;
 public class ProductTest extends LoginTest {
     public static final String TEST_PRODUCT_TITLE = "Test.allTheThings() T-Shirt (Red)";
     public static final String TEST_PRODUCT2_TITLE = "Sauce Labs Onesie";
+    public static final String TEST_PRODUCT3_TITLE = "Искусственный провал теста";
 
-    @Test
+    @Test(description = "Тестирование полного цикла покупки товара")
     public void addProduct() {
 
         catalogPage

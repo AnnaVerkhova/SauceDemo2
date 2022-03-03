@@ -16,11 +16,10 @@ public abstract class BasePage extends AbstractPage {
 
         return this;
     }
+
     public abstract BasePage isPageOpened();
+
     public abstract BasePage openPage();
 }
-
-
-
 
 

@@ -88,7 +88,7 @@ public class CatalogPage extends BasePage {
         for (String sort: getProductList()){
             sortList.add(sort);
         }
-        Collections.reverse(sortList);
+        Collections.sort(sortList);
         return sortList;
     }
     public ArrayList<String> sortProductHighToLow(){

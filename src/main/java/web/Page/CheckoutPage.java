@@ -33,7 +33,6 @@ public class CheckoutPage extends BasePage{
     public void continueButton() {
         driver.findElement(CONTINUE_BUTTON).click();
     }
-
     public void cancelInCart() {
         driver.findElement(CANCEL_BUTTON).click();
     }
@@ -47,6 +46,7 @@ public class CheckoutPage extends BasePage{
         }
         return this ;
     }
+
     @Override
     public CheckoutPage openPage() {
         driver.get(BASE_URL);

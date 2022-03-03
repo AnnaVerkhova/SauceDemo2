@@ -8,43 +8,29 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+
 import java.io.File;
-import java.util.concurrent.TimeUnit;
+import java.util.Date;
 
 public class TestListener implements ITestListener {
 
-    public void onTestStart(ITestResult iTestResult) {
-        System.out.println((String.format("======================================== STARTING TEST %s" +
-                " ========================================", iTestResult.getName())));
-    }
-
-    public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println(String.format("======================================== FINISHED TEST %s Duration: %ss" +
-                        " ========================================", iTestResult.getName(),
-                getExecutionTime(iTestResult)));
-    }
 
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println(String.format("======================================== FAILED TEST %s Duration: %ss" +
-                        " ========================================", iTestResult.getName(),
-                getExecutionTime(iTestResult)));
-        takeScreenshotToFile(iTestResult);
+        AllureUtils.attachScreenshot(getScreenshot (iTestResult));
     }
 
-    public void onTestSkipped(ITestResult iTestResult) {
-        System.out.println(String.format("======================================== SKIPPING TEST %s" +
-                " ========================================", iTestResult.getName()));
-        takeScreenshotToFile(iTestResult);
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
-    }
-
-
-    private long getExecutionTime(ITestResult iTestResult) {
-        return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
+    private byte[] getScreenshot(ITestResult iTestResult) {
+        ITestContext context = iTestResult.getTestContext();
+        try {
+            WebDriver driver = (WebDriver) context.getAttribute("driver");
+            if (driver != null) {
+                return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            } else {
+                return null;
+            }
+        } catch (NoSuchSessionException | IllegalStateException ex) {
+            return null;
+        }
     }
 
     private File takeScreenshotToFile(ITestResult iTestResult) {
@@ -52,8 +38,9 @@ public class TestListener implements ITestListener {
         try {
             WebDriver driver = (WebDriver) context.getAttribute("driver");
             if (driver != null) {
-                File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-                return file;
+                String fileName = String.format("%s%s_screenshot.jpg," + "target/screenshots/", new Date());
+                byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                return FileUtils.bytesToFile(fileName,bytes);
             } else {
                 return null;
             }
@@ -62,5 +49,4 @@ public class TestListener implements ITestListener {
         }
 
     }
-
 }

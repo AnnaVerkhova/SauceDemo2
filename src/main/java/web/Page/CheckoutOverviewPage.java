@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import web.Elements.CartElement;
 
-public class CheckoutOverviewPage extends  BasePage{
+public class CheckoutOverviewPage extends  BasePage {
     public static final String BASE_URL = "https://www.saucedemo.com/checkout-step-two.html";
     public static final By TITLE_LOCATOR = By.xpath("//span[@class='title' and text() = 'Checkout: Overview' ]");
     public static final By FINISH_BUTTON = By.id("finish");
@@ -14,7 +14,7 @@ public class CheckoutOverviewPage extends  BasePage{
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
-        this.cartElement= new CartElement(driver);
+        this.cartElement = new CartElement(driver);
         this.baseUrl = BASE_URL;
         this.baseElementLocator = TITLE_LOCATOR;
     }
@@ -30,8 +30,9 @@ public class CheckoutOverviewPage extends  BasePage{
         } catch (TimeoutException timeoutException) {
             return null;
         }
-        return this ;
+        return this;
     }
+
     @Override
     public CheckoutOverviewPage openPage() {
         driver.get(BASE_URL);

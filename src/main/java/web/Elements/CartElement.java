@@ -13,3 +13,4 @@ public class CartElement extends AbstractElement {
         super.baseElementLocator= CART_ELEMENT ;
     }
 }
+ 
