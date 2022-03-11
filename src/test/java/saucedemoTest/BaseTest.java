@@ -4,15 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
+import utils.PropertiesUtils;
 import utils.TestListener;
 import web.Page.*;
 import java.time.Duration;
 
 @Listeners({TestListener.class})
+
 public class BaseTest {
+
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected CatalogPage catalogPage;
@@ -34,16 +36,16 @@ public class BaseTest {
         USERNAME = System.getProperty("username");
         PASSWORD = System.getProperty("password");
     }
-
     @BeforeMethod
-    public void setup() {
+    public void setup(ITestContext context) {
         initParams();
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/win/chromedriver.exe");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--ignore-popup-blocking");
-        chromeOptions.addArguments("--ignore-certificate-errors");
-        driver = new ChromeDriver(chromeOptions);
+        String driverPath = PropertiesUtils.getEnv("driver_path");
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--ignore-popup-blocking");
+        options.addArguments("--ignore-certificate-errors");
+        driver = new ChromeDriver(options);
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(5));
         loginPage = new LoginPage(driver);
         catalogPage = new CatalogPage(driver);
@@ -51,11 +53,18 @@ public class BaseTest {
         checkoutPage = new CheckoutPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
         checkoutCompletePage = new CheckoutCompletePage(driver);
+        setDriverAttribute(context);
 
     }
 
+    private void setDriverAttribute(ITestContext context) {
+        String variable = "driver";
+        System.out.println("Setting driver into context with variable name " + variable);
+        context.setAttribute(variable, driver);
+    }
+
     @AfterMethod(alwaysRun = true)
-    public void teardown() {
+    public void teardown(ITestContext context) {
         driver.close();
         driver.quit();
     }
